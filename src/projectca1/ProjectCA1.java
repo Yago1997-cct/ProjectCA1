@@ -84,5 +84,64 @@ public class Food {
         }
         return top == CAPACITY - 1; 
     }
+    
+    public void addFood(Food item) {
+        if (item == null) {
+            System.out.println("Invalid item.");
+            return;
+        }
+        if (differentSides) {
+            // QUEUE (FIFO) linear with front/rear
+            if (isFull()) {
+                System.out.println("Storage is full. Try again later.");
+                return;
+            }
+            if (front == -1 && rear == -1) { // empty
+                front = 0;
+                rear  = 0;
+            } else {
+                rear++;
+            }
+            aliment[rear] = item;
+            System.out.println("Added (FIFO): " + item);
+        } else {
+            // STACK (LIFO) using 'top'
+            if (isFull()) {
+                System.out.println("Storage is full. Try again later.");
+                return;
+            }
+            aliment[++top] = item;
+            System.out.println("Added (LIFO): " + item);
+        }
+    }
+
+    public Food removeFood() {
+        if (differentSides) {
+            // QUEUE (FIFO)
+            if (front == -1 && rear == -1) {
+                System.out.println("Storage is empty.");
+                return null;
+            }
+            Food out = aliment[front];
+            if (front == rear) {
+                // last element
+                front = -1;
+                rear  = -1;
+            } else {
+                front++;
+            }
+            System.out.println("Removed (FIFO): " + out);
+            return out;
+        } else {
+            // STACK (LIFO)
+            if (top == -1) {
+                System.out.println("Storage is empty.");
+                return null;
+            }
+            Food out = aliment[top--];
+            System.out.println("Removed (LIFO): " + out);
+            return out;
+        }
+    }
 }
 }
