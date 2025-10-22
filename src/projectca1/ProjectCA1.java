@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class ProjectCA1 {
     
- public class Food {
+public class Food {
     public String name;   
     private int weight;
     private int bbd;          
@@ -38,6 +38,51 @@ public class ProjectCA1 {
             return Optional.empty();
         }
         return Optional.of(new Food(name.trim(), weight, bbd, timeplace));
+    }
+    public String getName() { 
+        return name; }           
+    public int getWeight() { 
+        return weight; }          
+    public int getBbd() { 
+        return bbd; }                
+    public int getTimeplace() { 
+        return timeplace; }    
+
+    @Override
+    public String toString() {
+        return name + " (" + weight + "g, BB " + bbd + "d, t=" + timeplace + ")";
+    }
+}
+    class Execute {
+    private Food[] aliment;
+    private final int CAPACITY = 8;
+
+    private int front;
+    private int rear;
+    private int top;
+
+    private boolean differentSides; // true = FIFO (queue), false = LIFO (stack)
+
+    public Execute(boolean differentSides) {
+        this.aliment = new Food[CAPACITY];
+        this.differentSides = differentSides;
+
+        this.front = -1;
+        this.rear = -1;
+        this.top = -1;
+    }
+    public boolean isEmpty() {
+        if (differentSides) {
+            return front == -1 && rear == -1; // queue
+        }
+        return top == -1; // stack
+    }
+
+    public boolean isFull() {
+        if (differentSides) {
+            return rear == CAPACITY - 1; 
+        }
+        return top == CAPACITY - 1; 
     }
 }
 }
