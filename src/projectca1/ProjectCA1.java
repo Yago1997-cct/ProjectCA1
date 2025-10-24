@@ -3,10 +3,10 @@ package projectca1;
 import java.util.Optional;
 
 class Food {
-    public String name;   // kept public as in your original
+    public String name;   
     private int weight;
     private int bbd;          // days until best-before (1..14)
-    private int timeplace;    // epoch seconds when placed
+    private int timeplace;    
 
     Food(String name, int weight, int bbd, int timeplace) {
         this.name = name;
@@ -17,13 +17,13 @@ class Food {
 
     // Static factory: returns Optional.empty() if invalid
     static Optional<Food> safeCreate(String name, int weight, int bbd, int timeplace) {
-        if (name == null || name.trim().isEmpty()) return Optional.empty();  // Java 8 friendly
+        if (name == null || name.trim().isEmpty()) return Optional.empty();  
         if (weight <= 0) return Optional.empty();
         if (bbd < 1 || bbd > 14) return Optional.empty();
         return Optional.of(new Food(name.trim(), weight, bbd, timeplace));
     }
 
-    // Original-style getters
+    
     public String getname()   { return name; }
     public int getweight()    { return weight; }
     public int getbbd()       { return bbd; }

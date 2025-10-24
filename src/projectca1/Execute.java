@@ -46,7 +46,7 @@ public class Execute {
                 System.out.println("Storage is full. Try again later.");
                 return;
             }
-            if (front == -1 && rear == -1) { // empty
+            if (front == -1 && rear == -1) { 
                 front = 0; rear = 0;
             } else {
                 rear++;
@@ -64,7 +64,7 @@ public class Execute {
         }
     }
 
-    // REMOVE food
+    
     Food removeFood() {
         if (differentSides) {
             // QUEUE (FIFO)
@@ -73,7 +73,7 @@ public class Execute {
                 return null;
             }
             Food out = aliment[front];
-            if (front == rear) { // last element
+            if (front == rear) { 
                 front = -1; rear = -1;
             } else {
                 front++;
